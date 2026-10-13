@@ -1,0 +1,2 @@
+Hello Python!
+File Handling is easy with Python.
