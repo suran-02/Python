@@ -27,5 +27,29 @@ df1 = pd.DataFrame(data)
 # print(df1.describe())
 
 
+### SAVE AND LOAD DATA FROM CSV
+
+# df1.to_csv("Test_data.csv", index=False)
+# load_df = pd.read_csv('Test_data.csv')
+# print(type(load_df))
+# print(load_df)
+
+### ROWS & COLUMNS - SELECTION
+# Columns Selection
+#print(df1[["Name","Salary"]])
+# Rows Selection
+#print('\n\n')
+## loc - label based index
+#print(df1.loc[0])
+#print()
+#print(df1.loc[df1.Name=="RM"])
+#print()
+#print(df1.loc[(df1.Name == 'Suga') & (df1.Salary>=80000)])
+#print('\n\n')
+## iloc -> index-value based
+#print(df1.iloc[2])
+#print()
+#print(df1.iloc[0:2]) #[start:stop:step]
+#print('\n\n')
 
 
