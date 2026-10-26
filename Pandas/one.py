@@ -1,8 +1,8 @@
 ### INTRO TO PANDAS
 import pandas as pd
 data = {
-    "Name": ["RM","Jin","Suga","Jhope"],
-    "Age":[31,34,33,31],
+    "Name": ["RM","Jin","Suga","JHope"],
+    "Age":[29,34,30,29],
     "Salary":[100000,80000,90000,95000]
 }
 
@@ -53,3 +53,20 @@ df1 = pd.DataFrame(data)
 #print('\n\n')
 
 
+### FILTER DATAFRAME
+print(df1['Age']>32) #boolean values
+print()
+print(df1[df1['Age']>32]) #printing true values only
+# storing the filtered data in a new dataframe
+print()
+df_age_filter = df1[df1['Age']>32]
+print(df_age_filter)
+print()
+#using multiple filters
+print(df1[(df1['Age'] > 30) & (df1["Salary"]>70000)])
+print()
+## In the above method the dataframe size is getting changed for using filters
+## but in the next method the size of the dataframe won't be changed
+print(df1.where((df1['Age'] > 30) & (df1["Salary"]>70000)))
+print()
+print(df1.where(df1['Age'] > 30, other='Not Eligible'))
