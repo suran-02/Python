@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 data = {
     "Name": ["RM","Jin","Suga","JHope"],
     "Age":[29,34,30,29],
@@ -41,4 +42,7 @@ df['Day'] = df['DOJ'].dt.day_name()
 # print(df)
 
 ### HANDLING MISSING VALUES
-
+df.loc[df.Name=='Jin','Salary'] = np.nan
+print(df.isnull().sum())
+df = df.fillna(0)
+print(df.isnull().sum())
