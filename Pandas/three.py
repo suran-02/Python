@@ -42,7 +42,58 @@ df['Day'] = df['DOJ'].dt.day_name()
 # print(df)
 
 ### HANDLING MISSING VALUES
-df.loc[df.Name=='Jin','Salary'] = np.nan
-print(df.isnull().sum())
-df = df.fillna(0)
-print(df.isnull().sum())
+# df.loc[df.Name=='Jin','Salary'] = np.nan
+# print(df.isnull().sum())
+# df = df.fillna(0)
+# print(df.isnull().sum())
+
+
+### AGGREGATION & GROUP BY
+# print(df['Role'].value_counts()) # frequency of values
+# print(df[df['Role'] == 'Vocalist'].value_counts())
+
+# print(df.groupby('Role')['Salary'].sum())
+
+data1 = {
+    'Name': ['Apple', 'Banana', 'Apple', 'Orange',
+             'Banana', 'Apple', 'Orange'],
+    'Category': ['Fruit', 'Fruit', 'Fruit', 'Fruit',
+                 'Fruit', 'Fruit', 'Fruit'],
+    'City': ['Hyderabad', 'Mumbai', 'Mumbai',
+             'Hyderabad', 'Delhi', 'Delhi', 'Mumbai'],
+    'Sales': [100, 200, 150, 300, 250, 400, 350],
+    'Quantity': [2, 4, 3, 5, 5, 8, 7]
+}
+
+sales = pd.DataFrame(data1)
+
+# print(sales.groupby(['City'])['Sales'].agg(
+#     ['sum','mean','min','max','count']
+# ))
+
+# print(sales.groupby(['City']).agg(
+#     {
+#         'Sales':'mean',
+#         'Quantity':'sum'
+#     }
+# ))
+
+
+### CONCATENATE AND MERGE DATAFRAMES (JOINS)
+df2 = pd.DataFrame({
+    'ID':[1,2,3],
+    'Name':['A','B','C']
+})
+df3 = pd.DataFrame({
+    'ID':[1,2,3,4],
+    'Score':[88,96,77,79]
+})
+
+print(pd.concat([df2,df3], axis=0)) ## vertical join/ row-level / top on top
+
+print(pd.concat([df2,df3],axis=1)) ## horizontal join/ column-level / side by side
+
+## MERGE = JOIN
+print(pd.merge(df2,df3,how='inner',on='ID'))
+print(pd.merge(df2,df3,how='outer',left_on='ID',right_on='ID'))
+
